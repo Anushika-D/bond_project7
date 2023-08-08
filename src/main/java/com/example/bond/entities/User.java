@@ -1,11 +1,10 @@
 package com.example.bond.entities;
 
-import com.fasterxml.jackson.annotation.*;
+import com.example.bond.entities.Book;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,10 +21,14 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "password")
+    private String password;
+
     @Column(name = "role")
     private String role;
 
     @ManyToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
     @JoinTable(
             name = "user_book",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -33,17 +36,17 @@ public class User {
     )
     private Set<Book> books = new HashSet<>();
 
-    // Constructors, getters, and setters
-
     public User() {
     }
 
-    public User(Integer id, String name, String email, String role, Set<Book> books) {
+    public User(Integer id, String name, String email, String password, String role, Set<Book> books) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.password=password;
         this.role = role;
         this.books = books;
+
     }
 
     public void addBook(Book book) {
@@ -78,6 +81,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getRole() {

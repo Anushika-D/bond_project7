@@ -1,5 +1,6 @@
-package com.example.bond.entities;
+package com.example.bond.repository;
 
+import com.example.bond.entities.User;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -30,7 +31,8 @@ public class UserDalImpl implements UserDal {
     public boolean checkUserExist(User user){
         boolean userExist=false;
         for (User everyUser: getAllUsers()) {
-            if (everyUser.getName().equalsIgnoreCase(user.getName())) {
+            System.out.println(everyUser.getName()+" "+everyUser.getPassword());
+            if (everyUser.getName().equalsIgnoreCase(user.getName()) && everyUser.getPassword().equals(user.getPassword())) {
                 userExist = true;
             }
         }

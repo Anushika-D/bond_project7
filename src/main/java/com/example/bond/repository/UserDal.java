@@ -1,4 +1,6 @@
-package com.example.bond.entities;
+package com.example.bond.repository;
+
+import com.example.bond.entities.User;
 
 import java.util.List;
 

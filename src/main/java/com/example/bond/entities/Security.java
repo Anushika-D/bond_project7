@@ -1,7 +1,5 @@
 package com.example.bond.entities;
 
-import com.example.bond.entities.Trade;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.example.bond.service;
 
 import com.example.bond.entities.User;
-import com.example.bond.entities.UserDal;
+import com.example.bond.repository.UserDal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

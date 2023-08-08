@@ -1,5 +1,7 @@
 package com.example.bond.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.List;
@@ -11,12 +13,13 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
 
     @ManyToMany(mappedBy = "books")
+    @JsonIgnore
     private Set<User> users = new HashSet<>();
 
     @OneToMany(mappedBy = "book")
@@ -25,18 +28,18 @@ public class Book {
     public Book() {
     }
 
-    public Book(Long id, String name, Set<User> users, List<Trade> trades) {
+    public Book(Integer id, String name, Set<User> users, List<Trade> trades) {
         this.id = id;
         this.name = name;
         this.users = users;
         this.trades = trades;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -1,11 +1,11 @@
 package com.example.bond.controller;
 
+import com.example.bond.entities.Book;
 import com.example.bond.entities.User;
 import com.example.bond.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -29,6 +29,7 @@ public class UserController {
     public boolean checkUserExist(@RequestBody User user) {
         return userService.checkUserExist(user);
     }
+
 
     @PostMapping("/find")
     @ResponseBody
