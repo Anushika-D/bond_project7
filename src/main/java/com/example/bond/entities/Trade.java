@@ -11,6 +11,9 @@ public class Trade {
     @Column(name="id")
     private Long id;
 
+    @Column(name="name")
+    private String name;
+
     @Column(name="quantity")
     private Integer quantity;
 
@@ -45,9 +48,10 @@ public class Trade {
         // Default constructor
     }
 
-    public Trade(Long id, int quantity, String status,
+    public Trade(Long id, String name,int quantity, String status,
                  double price, String buySell, LocalDate tradeDate, LocalDate settlementDate) {
         this.id = id;
+        this.name=name;
         this.quantity = quantity;
         this.status = status;
         this.price = price;
@@ -62,6 +66,14 @@ public class Trade {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getQuantity() {
