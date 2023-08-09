@@ -3,7 +3,6 @@ package com.example.bond.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.bond.entities.Book;
 import com.example.bond.entities.Security;
 import com.example.bond.repository.SecurityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +23,9 @@ public class SecurityService {
     public Security getSecurityById(Long id)
     {
         return securityRepository.findById(id).get();
+    }
+    public void saveOrUpdate(Security security)
+    {
+        securityRepository.save(security);
     }
 }
