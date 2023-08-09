@@ -1,5 +1,7 @@
 package com.example.bond.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -9,7 +11,7 @@ public class Trade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private Long id;
+    private Integer id;
 
     @Column(name="name")
     private String name;
@@ -38,6 +40,7 @@ public class Trade {
 
     @ManyToOne
     @JoinColumn(name = "security_id")
+    @JsonManagedReference
     private Security security;
 
     @ManyToOne
@@ -48,7 +51,7 @@ public class Trade {
         // Default constructor
     }
 
-    public Trade(Long id, String name,int quantity, String status,
+    public Trade(Integer id, String name,int quantity, String status,
                  double price, String buySell, LocalDate tradeDate, LocalDate settlementDate) {
         this.id = id;
         this.name=name;
@@ -60,11 +63,11 @@ public class Trade {
         this.settlementDate = settlementDate;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

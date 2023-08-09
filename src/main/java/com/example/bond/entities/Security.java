@@ -1,6 +1,7 @@
 package com.example.bond.entities;
 
 import com.example.bond.entities.Trade;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -15,6 +16,9 @@ public class Security {
     @Column(name = "id")
     private Long Id;
 
+    @Column(name = "name", unique = true)
+    private String name;
+
     @Column(name = "isin")
     private String isin;
 
@@ -28,25 +32,27 @@ public class Security {
     private LocalDate maturityDate;
 
     @Column(name = "coupon")
-    private double coupon;
+    private Double coupon;
 
     @Column(name = "type")
     private String type;
 
     @Column(name = "face_value")
-    private double faceValue;
+    private Double faceValue;
 
     @Column(name = "status")
     private String status;
 
     @OneToMany(mappedBy = "security")
+    @JsonBackReference
     private List<Trade> trades;
 
     public Security() {
     }
 
-    public Security(Long id, String isin, String cusip, String issuer, LocalDate maturityDate, double coupon, String type, double faceValue, String status, List<Trade> trades) {
+    public Security(Long id, String name,String isin, String cusip, String issuer, LocalDate maturityDate, Double coupon, String type, Double faceValue, String status, List<Trade> trades) {
         Id = id;
+        this.name=name;
         this.isin = isin;
         this.cusip = cusip;
         this.issuer = issuer;
@@ -64,6 +70,14 @@ public class Security {
 
     public void setId(Long id) {
         Id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getIsin() {
@@ -98,11 +112,11 @@ public class Security {
         this.maturityDate = maturityDate;
     }
 
-    public double getCoupon() {
+    public Double getCoupon() {
         return coupon;
     }
 
-    public void setCoupon(double coupon) {
+    public void setCoupon(Double coupon) {
         this.coupon = coupon;
     }
 
@@ -114,11 +128,11 @@ public class Security {
         this.type = type;
     }
 
-    public double getFaceValue() {
+    public Double getFaceValue() {
         return faceValue;
     }
 
-    public void setFaceValue(double faceValue) {
+    public void setFaceValue(Double faceValue) {
         this.faceValue = faceValue;
     }
 

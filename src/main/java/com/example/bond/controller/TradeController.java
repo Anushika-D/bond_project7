@@ -37,9 +37,9 @@ public class TradeController {
     }
 
     @PostMapping("/save")
-    private Long saveUser(@RequestBody Trade trade)
+    private Integer saveUser(@RequestBody Trade trade)
     {
         tradeService.saveOrUpdate(trade);
-        return trade.getId();
+        return trade.getId ();
     }
 }

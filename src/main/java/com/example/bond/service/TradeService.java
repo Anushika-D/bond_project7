@@ -17,7 +17,7 @@ public class TradeService {
         tradeRepository.findAll().forEach(trade -> trades.add(trade));
         return trades;
     }
-    public Trade getTradeById(int id)
+    public Trade getTradeById(Integer id)
     {
         return tradeRepository.findById(id).get();
     }
