@@ -15,10 +15,15 @@ public class TradeService {
     public List<Trade> getAllTrades(){
         List<Trade> trades = new ArrayList<Trade>();
         tradeRepository.findAll().forEach(trade -> trades.add(trade));
+        for (Trade trade : trades) {
+            trade.updateStatus();
+            tradeRepository.save(trade);
+        }
         return trades;
     }
     public Trade getTradeById(Integer id)
     {
+        List<Trade> trades=getAllTrades();
         return tradeRepository.findById(id).get();
     }
     public void saveOrUpdate(Trade trade)
@@ -32,6 +37,7 @@ public class TradeService {
     }
 
     public List<Trade> getTradeByBookName(String bookname) {
+        List<Trade> trades=getAllTrades();
         return tradeRepository.getTradeByBook_Name(bookname);
     }
 }

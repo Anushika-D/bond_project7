@@ -47,6 +47,26 @@ public class Trade {
     @JoinColumn(name = "book_id")
     private Book book;
 
+    public void updateStatus() {
+        LocalDate currentDate = LocalDate.now();
+
+        if (security != null && security.getMaturityDate() != null) {
+            if (security.getMaturityDate().isAfter(currentDate) || security.getMaturityDate().isEqual(currentDate)) {
+                setStatus("Matured");
+                security.setStatus("Matured");
+                for (Trade trade : security.getTrades()) {
+                    trade.setStatus("Matured");
+                }
+            } else {
+                setStatus("Unmatured");
+                security.setStatus("Unmatured");
+                for (Trade trade : security.getTrades()) {
+                    trade.setStatus("Unmatured");
+                }
+            }
+        }
+    }
+
     public Trade() {
         // Default constructor
     }
